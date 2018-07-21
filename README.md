@@ -28,7 +28,7 @@ Install
 
 Setup the base install of your favorite web server, and PHP7.
 
-Clone the BASC-ARCHIVER and run install on the setup script to get a working binary.
+Run the setup.py install script in the BASC-Archiver folder to get a working binary.
 
 Make sure the binary is available and executable by all users, and that the httpd user is able to manipulate the filesystem within the webapp directory.
 
