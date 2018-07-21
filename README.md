@@ -34,8 +34,6 @@ Run the setup.py install script in the BASC-Archiver folder to get a working bin
 
 Make sure the binary is available and executable by all users, and that the httpd user is able to manipulate the filesystem within the webapp directory, and that you bump PHP's upload and memory limit for serving the zip files.
 
-The base website comes with the /g/ sticky (Web render will not work however, it's stripped of css and js just to showcase the sites functions). Feel free to delete it and start adding your own.
-
 _If you have SELinux enforcing, it WILL catch PHP's attempts to exec the binary, connections to 4chan, and filesystem manipulation. In my testing on CentOS7, I found it easier just to disable SELinux. Do not run this application on a public facing web server unless you know what you're doing._
 
 TODO
@@ -48,3 +46,5 @@ Make it less ugly.
 Make an about page, link to 4chan.
 
 Move menu.php to be the index of the 4chan directory.
+
+Create empty cases.
