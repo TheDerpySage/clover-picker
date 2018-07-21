@@ -19,7 +19,9 @@ BASC Archiver takes any thread URL and downloads it to the filesystem.
 
 Individual board views give links to a web render of the thread as it was, an images only view with a full size view (supports webms), a ZIP download link, and an update checker to see if the thread has an available update (with the ability to do so right from the view) or is closed.
 
-Menu will update with new boards with a refresh of the site.
+Menu will update with new boards with a refresh of the site by copying the index, download, update, and images PHP pages into any new board folders.
+
+All POST and GET inputs are either validated or scrubbed.
 
 Install
 -------
@@ -30,7 +32,9 @@ Setup the base install of your favorite web server, and PHP7.
 
 Run the setup.py install script in the BASC-Archiver folder to get a working binary.
 
-Make sure the binary is available and executable by all users, and that the httpd user is able to manipulate the filesystem within the webapp directory.
+Make sure the binary is available and executable by all users, and that the httpd user is able to manipulate the filesystem within the webapp directory, and that you bump PHP's upload and memory limit for serving the zip files.
+
+The base website comes with the /g/ sticky. Feel free to delete it and start adding your own.
 
 _If you have SELinux enforcing, it WILL catch PHP's attempts to exec the binary, connections to 4chan, and filesystem manipulation. In my testing on CentOS7, I found it easier just to disable SELinux. Do not run this application on a public facing web server unless you know what you're doing._
 
@@ -42,3 +46,5 @@ Setup the update checker + Create an Update All function.
 Make it less ugly.
 
 Make an about page, link to 4chan.
+
+Move menu.php to be the index of the 4chan directory.
