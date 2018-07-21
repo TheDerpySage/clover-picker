@@ -24,7 +24,7 @@ Menu will update with new boards with a refresh of the site.
 Install
 -------
 
-**Linux Only, though a properly built binary of the latest version can make this work in Windows**
+**Linux Only, though a properly built binary of the latest version and some slight modifications can make this work in Windows**
 
 Setup the base install of your favorite web server, and PHP7.
 
