@@ -40,3 +40,5 @@ TODO
 Setup the update checker + Create an Update All function.
 
 Make it less ugly.
+
+Make an about page, link to 4chan.
