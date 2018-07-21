@@ -1,0 +1,1 @@
+py thread-archiver.py --path=../ <THREAD>
