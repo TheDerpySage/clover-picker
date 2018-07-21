@@ -1,4 +1,0 @@
-#!/usr/bin/python3.6
-# EASY-INSTALL-SCRIPT: 'BASC-Archiver==0.9.8','thread-archiver'
-__requires__ = 'BASC-Archiver==0.9.8'
-__import__('pkg_resources').run_script('BASC-Archiver==0.9.8', 'thread-archiver')
