@@ -39,8 +39,6 @@ _If you have SELinux enforcing, it WILL catch PHP's attempts to exec the binary,
 TODO
 ----
 
-Setup the update checker + Create an Update All function.
-
 Make it less ugly.
 
 Make an about page, link to 4chan.
@@ -48,3 +46,5 @@ Make an about page, link to 4chan.
 Move menu.php to be the index of the 4chan directory.
 
 Create empty cases.
+
+Checking for Updates works but it can be very taxing on the 4chan API and won't scale well. Considering making an information page to display information about separate threads, and consolidating checking for updates and initiating updates from there. Creating an Update All button might be a bit harder to do if this is done.

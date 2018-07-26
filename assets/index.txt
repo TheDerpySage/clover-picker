@@ -44,17 +44,29 @@ if (isset($_POST['submit'])){
 			$i=1;
 			echo "<table align='center' cellpadding='10'>";
 			foreach($files as $file) {
-			    /* Catch any zip files and unlink them */
+			    /* Catch any zip files and delete them */
 			    if (explode(".", $file)[1] != "zip"){
+				/* Open New Entry */
 				echo "<tr>";
-				$json = json_decode(file_get_contents("$dir/$file/$file.json"), true);
-				if ($json['posts'][0]['sub'] != '')
-				    $title = $json['posts'][0]['sub'];
-				else $title = $json['posts'][0]['semantic_url'];
-				if (empty($json['posts'][0]['closed']))
-				    echo "<td><form action='' method='post'>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td><td><a href='images.php?method=all&thread=$file'>Images</a></td><td><a href='download.php?thread=$file'>ZIP</a></td><td><input type='submit' name='submit' value='Update'><input type='hidden' name='thread' value='$file'></form></td>";
-				else echo "<td><form action='' method='post'>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td><td><a href='images.php?method=all&thread=$file'>Images</a></td><td><a href='download.php?thread=$file'>ZIP</a></td><td>Closed</form></td>";
-				echo "</tr>";
+				/* Get our JSON */
+				$us_json = json_decode(file_get_contents("$dir/$file/$file.json"), true);
+				/* Get a workable Title */
+				if ($us_json['posts'][0]['sub'] != '')
+				    $title = $us_json['posts'][0]['sub'];
+				else $title = $us_json['posts'][0]['semantic_url'];
+				/* Start forming the entry, include images and download links */
+				$temp = "<td><form action='' method='post'>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td><td><a href='images.php?method=all&thread=$file'>Images</a></td><td><a href='download.php?thread=$file'>ZIP</a></td>";
+				/* Check if thread has an Update, is Up to Date, or is Closed */
+				if (empty($us_json['posts'][0]['closed'])) {
+				    /* If not closed accoirding to our JSON, get their JSON for comparisons */
+				    $them_json = json_decode(file_get_contents("http://a.4cdn.org/$cd/thread/$file.json"), true);
+				    /* If new replies exist according to their JSON OR they have a closed marker that we don't have, show Update button */
+				    if (($us_json['posts'][0]['replies'] < $them_json['posts'][0]['replies']) || (!empty($them_json['posts'][0]['closed']))) {
+					$temp .= "<td><input type='submit' name='submit' value='Update'><input type='hidden' name='thread' value='$file'></form></td>";
+				    } else $temp .= "<td>Up To Date</form></td>";
+				} else $temp .= "<td>Closed</form></td>";
+				/* Enter Entry and Close */
+				echo $temp . "</tr>";
 			    } else unlink($file);
 			    $i++;
 			}
