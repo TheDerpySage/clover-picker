@@ -13,7 +13,7 @@ I wanted an easy to setup solution for personal use. There are a lot of larger c
 Features
 --------
 
-Web UI made using frames like the classic 2ch website.
+Web UI mimics the classic 2ch website, or use a true Frame version.
 
 BASC Archiver takes any thread URL and downloads it to the filesystem.
 
@@ -39,11 +39,11 @@ _If you have SELinux enforcing, it WILL catch PHP's attempts to exec the binary,
 TODO
 ----
 
+**Make the non-frame version work completely.**
+
 Make it less ugly.
 
 Make an about page, link to 4chan.
-
-Move menu.php to be the index of the 4chan directory.
 
 Create empty cases.
 

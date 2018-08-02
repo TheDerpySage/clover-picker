@@ -5,25 +5,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <title>Clover Picker - Menu</title>
 </head>
-<body TEXT="#CC0000" BGCOLOR="#FFFFFF" ALINK="#FF0099" VLINK="#003333">
+<body>
 <center>
-<h4>Clover Picker</h4>
-<font size="5">
-<?php
-    $dir = ".";
-    $files = scandir($dir);
-    sort($files);
-    $i=1;
-    foreach($files as $file) {
-        if($file != "." && $file != ".." && $file != "index.php" && $file != "board.php") {
-            echo "<li><a href='board.php?board=$file'>/$file/</a></li>";
-            $i++;
-	   }
-	}
-    echo "<br/>";
-?>
-</font>
-<a href="../thread-ripper">Thread Ripper</a>
+    <?php include("menu.php"); ?>
 </center>
 </body>
 </html>

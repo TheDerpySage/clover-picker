@@ -14,3 +14,28 @@ td {
     border-color:#000000;
     text-align:center;
 }
+.main {
+    margin-left: 125px; /* Same as the width of the sidenav */
+}
+.sidenav {
+    height: 100%;
+    width: 125px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    border-style: none solid none none;
+    border-color: #F0F0F0;
+    overflow-x: hidden;
+    padding-left: 5px;
+    color: #CC0000;
+}
+.sidenav a {
+    font-size: 25px;
+}
+.sidenav a:visited {
+    color: #003333;
+}
+.sidenav a:hover {
+    color: #CC0000;
+}

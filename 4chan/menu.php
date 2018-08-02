@@ -1,6 +1,6 @@
 <?php
     echo "<h4>Clover Picker</h4>";
-    $dir = "./4chan";
+    $dir = ".";
     $files = scandir($dir);
     sort($files);
     $i=1;
@@ -10,6 +10,6 @@
 	    $i++;
 	}
     }
-    echo "<p><a href='./ripper.php'>Thread Ripper</a></p>";
-    echo "<p><a href='./frameset/'>Frames Version</a></p>";
+    echo "<p><a href='../ripper.php'>Thread Ripper</a></p>";
+    echo "<p><a href='../frameset/'>Frames Version</a></p>";
 ?>

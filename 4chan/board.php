@@ -14,6 +14,10 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
 </head>
 <body bgcolor="#000000">
+<span class="sidenav">
+    <?php include("menu.php"); ?>
+</span>
+<span class="main">
 <table width="600" align="center">
     <tr>
 	<td>
@@ -64,7 +68,7 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 					$them_json = json_decode(file_get_contents("http://a.4cdn.org/$dir/thread/$file.json"), true);
 					/* If new replies exist according to their JSON OR they have a closed marker that we don't have, show Update button */
 					if (($us_json['posts'][0]['replies'] < $them_json['posts'][0]['replies']) || (!empty($them_json['posts'][0]['closed']))) {
-					    $temp .= "<td><a href='update.php?board=$board&thread=$thread'>UPDATE</a></td>";
+					    $temp .= "<td><a href='update.php?board=$board&thread=$thread'>Update</a></td>";
 					} else $temp .= "<td>Up To Date</td>";
 				    } else $temp .= "<td>Closed</td>";
 				    /* Enter Entry and Close */
@@ -80,5 +84,6 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 	</td>
     </tr>
 </table>
+</span>
 </body>
 </html>
