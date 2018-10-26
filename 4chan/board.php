@@ -14,9 +14,6 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
 </head>
 <body bgcolor="#000000">
-<span class="sidenav">
-    <?php include("menu.php"); ?>
-</span>
 <span class="main">
 <table width="600" align="center">
     <tr>
@@ -33,7 +30,7 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 		    /* First we get a list of boards we have */
 		    $dir = ".";
 		    $files = scandir($dir);
-		    $temp = array_diff($files, [".", "..", "download.php", "index.php", "images.php", "update.php"]);
+		    $temp = array_diff($files, [".", ".."]);
 		    $files = array_values($temp);
 		    sort($files);
 		    /* Make sure we were supplied a board */
@@ -44,7 +41,7 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 			    echo "<h2>/$board/ Threads</h2>";
 			    $dir = "$board";
 			    $files = scandir($dir);
-			    $temp = array_diff($files, [".", "..", "download.php", "index.php", "images.php", "update.php"]);
+			    $temp = array_diff($files, [".", ".."]);
 			    $files = array_values($temp);
 			    sort($files);
 			    $i=1;
@@ -61,14 +58,14 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 					$title = $us_json['posts'][0]['sub'];
 				    else $title = $us_json['posts'][0]['semantic_url'];
 				    /* Start forming the entry, include images and download links */
-				    $temp = "<td>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td><td><a href='images.php?method=all&thread=$file'>Images</a></td><td><a href='download.php?thread=$file'>ZIP</a></td>";
+				    $temp = "<td>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td><td><a href='images.php?method=all&board=$board&thread=$file'>Images</a></td><td><a href='download.php?board=$board&thread=$file'>ZIP</a></td>";
 				    /* Check if thread has an Update, is Up to Date, or is Closed */
 				    if (empty($us_json['posts'][0]['closed'])) {
-					/* If not closed accoirding to our JSON, get their JSON for comparisons */
+					/* If not closed according to our JSON, get their JSON for comparisons */
 					$them_json = json_decode(file_get_contents("http://a.4cdn.org/$dir/thread/$file.json"), true);
 					/* If new replies exist according to their JSON OR they have a closed marker that we don't have, show Update button */
 					if (($us_json['posts'][0]['replies'] < $them_json['posts'][0]['replies']) || (!empty($them_json['posts'][0]['closed']))) {
-					    $temp .= "<td><a href='update.php?board=$board&thread=$thread'>Update</a></td>";
+					    $temp .= "<td><a href='update.php?board=$board&thread=$file'>Update</a></td>";
 					} else $temp .= "<td>Up To Date</td>";
 				    } else $temp .= "<td>Closed</td>";
 				    /* Enter Entry and Close */

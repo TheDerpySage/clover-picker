@@ -21,15 +21,11 @@ if (isset($_POST['update'])){
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body bgcolor="#000000">
-<span class="sidenav">
-    <?php include("menu.php"); ?>
-</span>
-<span class="main">
     <table width="600" align="center">
 	<tr>
 	    <td>
 		<div class="header" >
-		    <h1>Clover Picker - Thread Ripper</h1>
+		    <h1>Clover Picker - Archiver</h1>
 		</div>
 	    </td>
 	</tr>
@@ -37,6 +33,7 @@ if (isset($_POST['update'])){
 	    <td>
 		<div class="body">
 		    <?php if (empty($thread)) {?>
+        <p>Threads entered here will be added to the site</p>
 		    <p>Enter Thread</p>
 		    <form action="" method="post">
 			<input type="text" name="thread" placeholder="Thread URL" size="50" required="yes"><br/><br/>
@@ -51,11 +48,11 @@ if (isset($_POST['update'])){
 			    $output = printThatArray($output);
 			    echo "<p>Thread: $thread</p>";
 			    if ($result != '0'){
-				echo "<p>An Error Occured.</p><p>$output</p><p>Exit Code: $result</p><p><a href='./'>Refreshing in 10 Seconds...</a></p>";
-				header('Refresh: 10; URL=./');
+				echo "<p>An Error Occured.</p><p>$output</p><p>Exit Code: $result</p><p><a href='./archiver.php'>Refreshing in 10 Seconds...</a></p>";
+				header('Refresh: 10; URL=./archiver.php');
 			    } else {
-				echo "<p>Executed Successfully.</p><p>$output</p><p><a href='./'>Refreshing in 10 Seconds...</a></p>";
-				header('Refresh: 10; URL=./');
+				echo "<p>Executed Successfully.</p><p>$output</p><p><a href='./archiver.php'>Refreshing in 10 Seconds...</a></p>";
+				header('Refresh: 10; URL=./archiver.php');
 			    }
 			}
 		    ?>
@@ -63,6 +60,5 @@ if (isset($_POST['update'])){
 	    </td>
 	</tr>
     </table>
-</span>
 </body>
 </html>

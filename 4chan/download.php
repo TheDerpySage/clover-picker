@@ -1,11 +1,12 @@
 <?php
 function iAmError($n) {
-    return "<p>An Error Occured: $n</p><video width='500' autoplay loop><source src='../../assets/jazz.webm' type='video/webm' autoplay='true'>Your shitty browser does not support Webms. Get a real browser you fucking nerd.</video>";
+    return "<p>An Error Occured: $n</p><video width='500' autoplay loop><source src='../assets/jazz.webm' type='video/webm' autoplay='true'>Your shitty browser does not support Webms. Get a real browser you fucking nerd.</video>";
 }
 
 function zipAndServe($dir, $zip_file) {
     // Get real path for our folder
     $rootPath = realpath($dir);
+    echo $rootPath;
     // Initialize archive object
     $zip = new ZipArchive();
     $zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE);
@@ -38,6 +39,7 @@ function zipAndServe($dir, $zip_file) {
 }
 
 /* GET */
+$board = isset($_GET['board']) ? $_GET['board'] : '';
 $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
 ?>
 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
@@ -45,7 +47,7 @@ $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
 <head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
     <meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate' />
-    <link rel='stylesheet' type='text/css' href='../../assets/style.css'>
+    <link rel='stylesheet' type='text/css' href='../assets/style.css'>
 </head>
 <body bgcolor='#000000'>
     <table width='600' align='center'>
@@ -60,20 +62,22 @@ $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
 	    <td>
 		<div class='body'>
 		<?php
-		    if (!empty($thread)){
-			$cd = basename(__DIR__);
-			$dir = ".";
-			$files = scandir($dir);
-			$temp = array_diff($files, [".", "..","index.php","images.php","update.php"]);
+    $board = escapeshellcmd("$board");
+    $thread = escapeshellcmd("$thread");
+		    if (!empty($board)){
+			$files = scandir($board);
+			$temp = array_diff($files, [".", ".."]);
 			$files = array_values($temp);
 			sort($files);
-			echo "<h4><a href='index.php'><--Back to /$cd/---</a></h4>";
+			echo "<h4><a href='board.php?board=$board'><--Back to /$board/---</a></h4>";
+      if (!empty($thread)){
 			/* Validate thread based on if it exists in this dir */
 			if (array_search($thread, $files) !== false){
 			    echo "<p>Creating and Serving /$thread/...<br/>Please wait warmly...</p>";
-			    zipAndServe("$dir/$thread", "$thread.zip");
+			    zipAndServe("$board/$thread", "$thread.zip");
 			} else echo iAmError("Thread does not exist in this boards archive.");
 		    } else echo iAmError("No Thread specified.");
+     } else echo iAmError("No Board specified.");
 		?>
 		</div>
 	    </td>
