@@ -32,13 +32,11 @@ Run the setup.py install script in the BASC-Archiver folder to get a working bin
 
 Make sure the httpd user is able to manipulate the filesystem within the webapp directory, and that you bump PHP's upload and memory limit for serving the zip files.
 
-_If you have SELinux enforcing, it WILL catch PHP's attempts to exec the binary, connections to 4chan, and filesystem manipulation. In my testing on CentOS7, I found it easier just to disable SELinux. Do not run this application on a public facing web server unless you know what you're doing._
-
 TODO
 ----
 
 Make an about page, link to 4chan.
 
-Fix 404 cases (?).
+Make a close method FOR 404 cases.
 
-Checking for Updates works but it can be very taxing on the 4chan API and won't scale well. Considering making an information page to display information about separate threads, and consolidating checking for updates and initiating updates from there. Creating an Update All button might be a bit harder to do if this is done.
+Fix scaling for full size images.
