@@ -14,6 +14,9 @@ td {
     border-color:#000000;
     text-align:center;
 }
+p {
+    text-align : left;
+}
 .max_width {
     width: auto;
 }

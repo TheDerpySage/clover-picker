@@ -1,6 +1,6 @@
 <?php
 function iAmError($n) {
-    return "<p>An Error Occured: $n</p><video width='500' autoplay loop><source src='../assets/jazz.webm' type='video/webm' autoplay='true'>Your shitty browser does not support Webms. Get a real browser you fucking nerd.</video>";
+    return "<h3>An Error Occured: $n</h3><video width='500' autoplay loop><source src='../assets/jazz.webm' type='video/webm' autoplay='true'>Your shitty browser does not support Webms. Get a real browser you fucking nerd.</video>";
 }
 
 /* GET */
@@ -75,8 +75,8 @@ $selection = isset($_GET['file']) ? $_GET['file'] : '';
 						if (array_search($selection, $files) !== false){
 							$ext = explode(".", $selection);
 							if ($ext[1] == "webm"){
-								echo "<p><a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a></p><a href='$board/$thread/images/$selection' target='_blank'><video class='max_width' controls autoplay><source src='$board/$thread/images/$selection' type='video/webm'></video><br/>$selection</a>";
-							} else echo "<p><a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a></p><a href='$board/$thread/images/$selection' target='_blank'><img class='max_width' src='$board/$thread/images/$selection'><br/>$selection</a>";
+								echo "<a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a><br /><a href='$board/$thread/images/$selection' target='_blank'><video class='max_width' controls autoplay><source src='$board/$thread/images/$selection' type='video/webm'></video><br/>$selection</a>";
+							} else echo "<a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a><br /><a href='$board/$thread/images/$selection' target='_blank'><img class='max_width' src='$board/$thread/images/$selection'><br/>$selection</a>";
 						} else echo iAmError("Given File does not exist in this thread.");
 					} else echo iAmError("Given Thread does not exist in the archive.");
 				} else echo iAmError("No File specified");

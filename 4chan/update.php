@@ -1,6 +1,6 @@
 <?php
 function iAmError($n) {
-    return "<p>An Error Occured: $n</p><video width='500' autoplay loop><source src='../assets/jazz.webm' type='video/webm' autoplay='true'>Your shitty browser does not support Webms. Get a real browser you fucking nerd.</video>";
+    return "<h3>An Error Occured: $n</h3><video width='500' autoplay loop><source src='../assets/jazz.webm' type='video/webm' autoplay='true'>Your shitty browser does not support Webms. Get a real browser you fucking nerd.</video>";
 }
 function printThatArray($array){
     foreach($array as $line){
@@ -48,12 +48,12 @@ $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
         $command = "thread-archiver --silent --runonce --path=../ https://boards.4chan.org/$board/thread/$thread";
         exec($command, $output, $result);
         $output = printThatArray($output);
-        echo "<p>Thread: $thread</p>";
+        echo "<h5>Thread: $thread</h5>";
         if ($result != '0'){
-          echo "<p>An Error Occured.</p><p>$output</p><p>Exit Code: $result</p><p><a href='board.php?board=$board'>Refreshing in 10 Seconds...</a></p>";
+          echo "<h5>An Error Occured.</h5><h5>$output</h5><h5>Exit Code: $result</h5><h5><a href='board.php?board=$board'>Refreshing in 10 Seconds...</a></h5>";
           header("Refresh: 10; URL=.board.php?board=$board");
         } else {
-          echo "<p>Executed Successfully.</p><p>$output</p><p><a href='board.php?board=$board'>Refreshing in 10 Seconds...</a></p>";
+          echo "<h5>Executed Successfully.</h5><h5>$output</h5><h5><a href='board.php?board=$board'>Refreshing in 10 Seconds...</a></h5>";
           header("Refresh: 10; URL=board.php?board=$board");
         }
       } else echo iAmError("Thread does not exist in this boards archive.");

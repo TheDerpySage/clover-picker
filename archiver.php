@@ -33,8 +33,8 @@ if (isset($_POST['update'])){
 	    <td>
 		<div class="body">
 		    <?php if (empty($thread)) {?>
-        <p>Threads entered here will be added to the site</p>
-		    <p>Enter Thread</p>
+        <h5>Threads entered here will be added to the site</h5>
+		    <h5>Enter Thread</h5>
 		    <form action="" method="post">
 			<input type="text" name="thread" placeholder="Thread URL" size="50" required="yes"><br/><br/>
 			<input class="text" type="submit" name="update" value="Add to Archive" onClick='document.getElementById("text").style.display="initial";'><br/><br/>
@@ -46,12 +46,12 @@ if (isset($_POST['update'])){
 			    $command = "thread-archiver --silent --runonce --path=./ $scrub_thread";
 			    exec($command, $output, $result);
 			    $output = printThatArray($output);
-			    echo "<p>Thread: $thread</p>";
+			    echo "<h5>Thread: $thread</h5>";
 			    if ($result != '0'){
-				echo "<p>An Error Occured.</p><p>$output</p><p>Exit Code: $result</p><p><a href='./archiver.php'>Refreshing in 10 Seconds...</a></p>";
+				echo "<h5>An Error Occured.</h5><h5>$output</h5><h5>Exit Code: $result</h5><h5><a href='./archiver.php'>Refreshing in 10 Seconds...</a></h5>";
 				header('Refresh: 10; URL=./archiver.php');
 			    } else {
-				echo "<p>Executed Successfully.</p><p>$output</p><p><a href='./archiver.php'>Refreshing in 10 Seconds...</a></p>";
+				echo "<h5>Executed Successfully.</h5><h5>$output</h5><h5><a href='./archiver.php'>Refreshing in 10 Seconds...</a></h5>";
 				header('Refresh: 10; URL=./archiver.php');
 			    }
 			}
