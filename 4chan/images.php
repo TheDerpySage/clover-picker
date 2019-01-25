@@ -32,7 +32,7 @@ $selection = isset($_GET['file']) ? $_GET['file'] : '';
 		    $cd = basename(__DIR__);
 		    $thread = escapeshellcmd($thread);
 		    echo "<h2>/$thread/ Images</h2>";
-		    echo "<h4><a href='board.php?board=$board'><--Back to /$board/---</a></h4>";
+			echo "<h4><a href='board.php?board=$board'><--Back to /$board/---</a></h4>";
 		    if (!empty($thread)){
 			if ($method == 'all'){
 			    $dir = "$board/";

@@ -75,7 +75,7 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 					}
 					echo "</table><br/>";
 				} else echo iAmError("Board does not exist in archive.");
-		    } else echo iAmError("Board not specified.");
+			} else echo iAmError("Board not specified.");
 		?>
 	    </div>
 	</td>

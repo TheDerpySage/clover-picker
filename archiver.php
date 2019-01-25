@@ -32,8 +32,8 @@ if (isset($_POST['update'])){
 	<tr>
 	    <td>
 		<div class="body">
-		    <?php if (empty($thread)) {?>
-        <h5>Threads entered here will be added to the site</h5>
+			<?php if (empty($thread)) { ?>
+        	<h5>Threads entered here will be added to the site</h5>
 		    <h5>Enter Thread</h5>
 		    <form action="" method="post">
 			<input type="text" name="thread" placeholder="Thread URL" size="50" required="yes"><br/><br/>
@@ -41,20 +41,20 @@ if (isset($_POST['update'])){
 			<span style="display:none;" id="text">LOADING... PLEASE WAIT...</span>
 		    </form>
 		    <?php
-			} else {
-			    $scrub_thread = escapeshellcmd($thread);
-			    $command = "thread-archiver --silent --runonce --path=./ $scrub_thread";
-			    exec($command, $output, $result);
-			    $output = printThatArray($output);
-			    echo "<h5>Thread: $thread</h5>";
-			    if ($result != '0'){
-				echo "<h5>An Error Occured.</h5><h5>$output</h5><h5>Exit Code: $result</h5><h5><a href='./archiver.php'>Refreshing in 10 Seconds...</a></h5>";
-				header('Refresh: 10; URL=./archiver.php');
-			    } else {
-				echo "<h5>Executed Successfully.</h5><h5>$output</h5><h5><a href='./archiver.php'>Refreshing in 10 Seconds...</a></h5>";
-				header('Refresh: 10; URL=./archiver.php');
-			    }
-			}
+				} else {
+					$scrub_thread = escapeshellcmd($thread);
+					$command = "thread-archiver --silent --runonce --path=./ $scrub_thread";
+					exec($command, $output, $result);
+					$output = printThatArray($output);
+					echo "<h5>Thread: $thread</h5>";
+					if ($result != '0'){
+						echo "<h5>An Error Occured.</h5><h5>$output</h5><h5>Exit Code: $result</h5><h5><a href='./archiver.php'>Refreshing in 10 Seconds...</a></h5>";
+						header('Refresh: 10; URL=./archiver.php');
+					} else {
+						echo "<h5>Executed Successfully.</h5><h5>$output</h5><h5><a href='./archiver.php'>Refreshing in 10 Seconds...</a></h5>";
+						header('Refresh: 10; URL=./archiver.php');
+					}
+				}
 		    ?>
 		</div>
 	    </td>
