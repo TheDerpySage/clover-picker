@@ -23,7 +23,8 @@
 	}
     echo "<br/>";
 ?>
-<a href="./archiver.php">Thread Archiver</a>
+<a href="./archiver.php">Thread Archiver</a><br /><br />
+<a href="./about.html">About</a>
 </span>
 
 </body>

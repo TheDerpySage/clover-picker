@@ -32,11 +32,13 @@ Run the setup.py install script in the BASC-Archiver folder to get a working bin
 
 Make sure the httpd user is able to manipulate the filesystem within the webapp directory, and that you bump PHP's upload and memory limit for serving the zip files.
 
+Note to people using any distro with SELinux; SELinux hates it when web servers make outbound queries. Proceed with caution. 
+
 TODO
 ----
 
-Make an about page, link to 4chan.
+Make a close method for 404 cases.
 
-Make a close method FOR 404 cases.
+Fix ZIP file serving.
 
 Fix scaling for full size images.

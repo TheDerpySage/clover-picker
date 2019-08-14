@@ -90,7 +90,7 @@ $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
                                 echo "<h4><a href='board.php?board=$board'><--Back to /$board/---</a></h4>";
                                 echo "<table align='center' cellpadding='10'><tr>";
                                 echo "<td><a href='images.php?method=all&board=$board&thread=$thread'><img src='$thumb'></a></td>";
-                                echo "<td><p>Title: $title</p><p>Date Posted: $str_time</p><p>Status: $status</p><p><a href='images.php?method=all&board=$board&thread=$thread'>All Images</a></p><p><a href='download.php?board=$board&thread=$thread'>Download ZIP</a></p></td>";
+                                echo "<td><p>Title: $title</p><p>Thread: <a href='$board/$thread/$thread.html'>/$thread/</a></p><p>Date Posted: $str_time</p><p>Status: $status</p><p><a href='images.php?method=all&board=$board&thread=$thread'>All Images</a></p><p><a href='download.php?board=$board&thread=$thread'>Download ZIP</a></p></td>";
                                 echo "</tr></table>";
                                 echo "<h4><a href='board.php?board=$board'><--Back to /$board/---</a></h4>";
 
