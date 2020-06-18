@@ -50,11 +50,11 @@ $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
         $output = printThatArray($output);
         echo "<h5>Thread: $thread</h5>";
         if ($result != '0'){
-          echo "<h5>An Error Occured.</h5><h5>$output</h5><h5>Exit Code: $result</h5><h5><a href='board.php?board=$board'>Refreshing in 10 Seconds...</a></h5>";
-          header("Refresh: 10; URL=.board.php?board=$board");
+          echo "<h5>An Error Occured.</h5><h5>$output</h5><h5>Exit Code: $result</h5><h5><a href='thread.php?board=$board&thread=$thread'>Refreshing in 10 Seconds...</a></h5>";
+          header("Refresh: 10; URL=thread.php?board=$board&thread=$thread");
         } else {
-          echo "<h5>Executed Successfully.</h5><h5>$output</h5><h5><a href='board.php?board=$board'>Refreshing in 10 Seconds...</a></h5>";
-          header("Refresh: 10; URL=board.php?board=$board");
+          echo "<h5>Executed Successfully.</h5><h5>$output</h5><h5><a href='thread.php?board=$board&thread=$thread'>Refreshing in 10 Seconds...</a></h5>";
+          header("Refresh: 10; URL=thread.php?board=$board&thread=$thread");
         }
       } else echo iAmError("Thread does not exist in this boards archive.");
     } else echo iAmError("No Thread specified.");
