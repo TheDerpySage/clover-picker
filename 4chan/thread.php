@@ -66,11 +66,11 @@ $method = isset($_GET['method']) ? $_GET['method'] : '';
                                         fclose($infile);
                                         echo "<h5>Thread: $thread</h5>";
                                         echo "<h5>Thread has been closed successfully.</h5><h5><a href='thread.php?board=$board&thread=$thread'>Refreshing in 10 Seconds...</a></h5>";
-                                        header("Refresh: 10; URL=.thread.php?board=$board&thread=$thread");
+                                        header("Refresh: 10; URL=thread.php?board=$board&thread=$thread");
                                     } catch (Exception $e) {
                                         echo "<h5>Thread: $thread</h5>";
                                         echo "<h5>Something went wrong...</h5><h5>$e</h5><h5><a href='thread.php?board=$board&thread=$thread'>Refreshing in 10 Seconds...</a></h5>";
-                                        header("Refresh: 10; URL=.thread.php?board=$board&thread=$thread");
+                                        header("Refresh: 10; URL=thread.php?board=$board&thread=$thread");
                                     }
                                 /* Else just show information */
                                 } else {       
@@ -78,8 +78,6 @@ $method = isset($_GET['method']) ? $_GET['method'] : '';
                                     /* Get a Title */
                                     if ($json['posts'][0]['sub'] != '')
                                         $title = $json['posts'][0]['sub'];
-                                    elseif ($json['posts'][0]['name'] != '')
-                                        $title = $json['posts'][0]['name'];
                                     else $title = $json['posts'][0]['semantic_url'];
                                     /* Get Status */
                                     /* Check if closed according to our JSON */
