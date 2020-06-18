@@ -60,6 +60,8 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 							/* Get a workable Title */
 							if ($us_json['posts'][0]['sub'] != '')
 								$title = $us_json['posts'][0]['sub'];
+							elseif ($us_json['posts'][0]['name'] != '')
+								$title = $us_json['posts'][0]['name'];
 							else $title = $us_json['posts'][0]['semantic_url'];
 							/* Form the entry */
 							$temp .= "<td>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td>";
