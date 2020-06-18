@@ -56,17 +56,15 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 							/* Open New Entry */
 							$temp = "<tr>";
 							/* Get our JSON */
-							$us_json = json_decode(file_get_contents("$dir/$file/$file.json"), true);
+							$json = json_decode(file_get_contents("$dir/$file/$file.json"), true);
 							/* Get a workable Title */
-							if ($us_json['posts'][0]['sub'] != '')
-								$title = $us_json['posts'][0]['sub'];
-							elseif ($us_json['posts'][0]['name'] != '')
-								$title = $us_json['posts'][0]['name'];
-							else $title = $us_json['posts'][0]['semantic_url'];
+							if ($json['posts'][0]['sub'] != '')
+								$title = $json['posts'][0]['sub'];
+							else $title = $json['posts'][0]['semantic_url'];
 							/* Form the entry */
 							$temp .= "<td>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td>";
 							$temp .= "<td><a href='images.php?method=all&board=$board&thread=$file'>Images</a></td>";
-							if (empty($us_json['posts'][0]['closed']))
+							if (empty($json['posts'][0]['closed']))
 								$temp .= "<td>Open</td>";
 							else $temp .= "<td>Closed</td>";
 							$temp .= "<td><a href='thread.php?board=$board&thread=$file'>Info</a></td>";						
