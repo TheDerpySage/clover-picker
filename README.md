@@ -37,8 +37,6 @@ Note to people using any distro with SELinux; SELinux hates it when web servers 
 TODO
 ----
 
-Make a close method for 404 cases.
-
 Fix ZIP file serving.
 
 Fix scaling for full size images.

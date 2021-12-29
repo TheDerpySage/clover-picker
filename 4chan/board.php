@@ -16,7 +16,16 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+	<script type="text/javascript" src="../dependencies/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../dependencies/datatables.min.css"/>
+	<script type="text/javascript" src="../dependencies/datatables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../assets/style.css">
+	<style>
+		#table1_wrapper{
+			margin-right: 10px;
+			margin-left: 10px;
+		}
+	</style>
 </head>
 <body bgcolor="#000000">
 <span class="main">
@@ -49,22 +58,32 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 					$temp = array_diff($files, [".", ".."]);
 					$files = array_values($temp);
 					sort($files);
-					echo "<table align='center' cellpadding='10'>";
+					echo "<table id='table1' align='center' cellpadding='10'>
+					<thead>
+					<tr>
+					<th scope='col'>Title</th>
+					<th scope='col'>Thread #</th>
+					<th scope='col'>Images</th>
+					<th scope='col'>Status</th>
+					<th scope='col'>Info</th>
+					</tr>
+					</thead>
+					<tbody>";
 					foreach($files as $file) {
 						/* Catch any zip files and delete them */
 						if (explode(".", $file)[1] != "zip"){
 							/* Open New Entry */
 							$temp = "<tr>";
 							/* Get our JSON */
-							$us_json = json_decode(file_get_contents("$dir/$file/$file.json"), true);
+							$json = json_decode(file_get_contents("$dir/$file/$file.json"), true);
 							/* Get a workable Title */
-							if ($us_json['posts'][0]['sub'] != '')
-								$title = $us_json['posts'][0]['sub'];
-							else $title = $us_json['posts'][0]['semantic_url'];
+							if ($json['posts'][0]['sub'] != '')
+								$title = $json['posts'][0]['sub'];
+							else $title = $json['posts'][0]['semantic_url'];
 							/* Form the entry */
 							$temp .= "<td>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td>";
 							$temp .= "<td><a href='images.php?method=all&board=$board&thread=$file'>Images</a></td>";
-							if (empty($us_json['posts'][0]['closed']))
+							if (empty($json['posts'][0]['closed']))
 								$temp .= "<td>Open</td>";
 							else $temp .= "<td>Closed</td>";
 							$temp .= "<td><a href='thread.php?board=$board&thread=$file'>Info</a></td>";						
@@ -73,7 +92,7 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 							echo $temp;
 						} else unlink($file);
 					}
-					echo "</table><br/>";
+					echo "</tbody></table><br/>";
 				} else echo iAmError("Board does not exist in archive.");
 			} else echo iAmError("Board not specified.");
 		?>
@@ -83,4 +102,13 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 </table>
 </span>
 </body>
+<script>
+$(document).ready(function(){
+  $("#table1").dataTable({
+        "iDisplayLength": 10,
+        "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]],
+		"order": [[ 1, "asc" ]]
+    });
+});
+</script>
 </html>

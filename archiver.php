@@ -1,8 +1,9 @@
 <?php
 function printThatArray($array){
+	$temp = "";
     foreach($array as $line){
-	$temp .= $line;
-	$temp .= "<br/>";
+		$temp .= $line;
+		$temp .= "<br/>";
     }
     return $temp;
 }
@@ -46,6 +47,7 @@ if (isset($_POST['update'])){
 					$command = "thread-archiver --silent --runonce --path=./ $scrub_thread";
 					exec($command, $output, $result);
 					$output = printThatArray($output);
+					#passthru($command, $result);
 					echo "<h5>Thread: $thread</h5>";
 					if ($result != '0'){
 						echo "<h5>An Error Occured.</h5><h5>$output</h5><h5>Exit Code: $result</h5><h5><a href='./archiver.php'>Refreshing in 10 Seconds...</a></h5>";
