@@ -17,7 +17,12 @@ $selection = isset($_GET['file']) ? $_GET['file'] : '';
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
 </head>
 <body bgcolor="#000000">
-    <table width="600" align="center">
+	<?php
+	if ($method == 'single'){
+		echo "<table style='width:100%' align='center'>";
+	} else { echo "<table style='width:600px' align='center'>"; }
+	?>
+    
 	<tr>
 	    <td>
 		<div class="header" >
@@ -75,8 +80,8 @@ $selection = isset($_GET['file']) ? $_GET['file'] : '';
 						if (array_search($selection, $files) !== false){
 							$ext = explode(".", $selection);
 							if ($ext[1] == "webm"){
-								echo "<a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a><br /><a href='$board/$thread/images/$selection' target='_blank'><video class='max_width' controls autoplay><source src='$board/$thread/images/$selection' type='video/webm'></video><br/>$selection</a>";
-							} else echo "<a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a><br /><a href='$board/$thread/images/$selection' target='_blank'><img class='max_width' src='$board/$thread/images/$selection'><br/>$selection</a>";
+								echo "<a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a><br /><a href='$board/$thread/images/$selection' target='_blank'><video style='width:auto;max-width:100%' controls autoplay><source src='$board/$thread/images/$selection' type='video/webm'></video><br/>$selection</a>";
+							} else echo "<a href='images.php?method=all&board=$board&thread=$thread'><-Back to /$thread/--</a><br /><a href='$board/$thread/images/$selection' target='_blank'><img style='width:auto;max-width:100%' src='$board/$thread/images/$selection'><br/>$selection</a>";
 						} else echo iAmError("Given File does not exist in this thread.");
 					} else echo iAmError("Given Thread does not exist in the archive.");
 				} else echo iAmError("No File specified");

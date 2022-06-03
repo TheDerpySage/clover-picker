@@ -17,7 +17,7 @@ BASC Archiver takes any thread URL and downloads it to the filesystem.
 
 Individual board views give links to a web render of the thread as it was, an images only view with a full size view (supports webms), a ZIP download link, and an update checker to see if the thread has an available update (with the ability to do so right from the view) or is closed.
 
-Menu will update with new boards with a refresh of the site by copying the index, download, update, and images PHP pages into any new board folders.
+Menu will update with new boards with a refresh of the site.
 
 All POST and GET inputs are either validated or scrubbed.
 
@@ -38,5 +38,3 @@ TODO
 ----
 
 Fix ZIP file serving.
-
-Fix scaling for full size images.
