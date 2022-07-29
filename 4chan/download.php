@@ -52,6 +52,8 @@ $zip = isset($_GET['zip']) ? $_GET['zip'] : '';
 			<td>
 				<div class='body'>
 					<?php
+					if (!is_dir("output"))
+						mkdir("output", 0775);
 					$board = escapeshellcmd("$board");
 					$thread = escapeshellcmd("$thread");
 					if (!empty($board)) {
