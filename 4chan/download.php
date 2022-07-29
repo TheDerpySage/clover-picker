@@ -54,6 +54,7 @@ $zip = isset($_GET['zip']) ? $_GET['zip'] : '';
 					<?php
 					if (!is_dir("output"))
 						mkdir("output", 0775);
+					remove_old_files("output", 1800);
 					$board = escapeshellcmd("$board");
 					$thread = escapeshellcmd("$thread");
 					if (!empty($board)) {
@@ -83,7 +84,6 @@ $zip = isset($_GET['zip']) ? $_GET['zip'] : '';
 							} else echo iAmError("Thread does not exist in this boards archive.");
 						} else echo iAmError("No Thread specified.");
 					} else echo iAmError("No Board specified.");
-					remove_old_files("output", 1800);
 					?>
 				</div>
 			</td>
