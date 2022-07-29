@@ -26,15 +26,10 @@ Install
 
 **Linux Only, though a properly built binary of the latest version of BASC Archiver and some slight modifications can make this work in Windows**
 
-Setup the base install of your favorite web server, and PHP7.
+Setup the base install of your favorite web server, PHP, and zip.
 
 Run the setup.py install script in the BASC-Archiver folder to get a working binary.
 
-Make sure the httpd user is able to manipulate the filesystem within the webapp directory, and that you bump PHP's upload and memory limit for serving the zip files.
+Make sure the httpd user is able to manipulate the filesystem within the webapp directory.
 
 Note to people using any distro with SELinux; SELinux hates it when web servers make outbound queries. Proceed with caution. 
-
-TODO
-----
-
-Fix ZIP file serving.
