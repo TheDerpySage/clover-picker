@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # BASC Imageboard Archiver Utilities
 from __future__ import absolute_import
@@ -26,8 +26,12 @@ def download_file(local_filename, url, clobber=False):
     dir_name = os.path.dirname(local_filename)
     mkdirs(dir_name)
 
+    headers = {
+        'User-Agent': 'BASC-Archiver/0.9.9 Chen/Am I Doing Good Ran-sama?'
+    }
+
     if clobber or not os.path.exists(local_filename):
-        i = requests.get(url)
+        i = requests.get(url, headers=headers)
 
         # if not exists
         if i.status_code == 404:

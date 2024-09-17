@@ -47,7 +47,7 @@ if (isset($_POST['update'])) {
 					<?php
 					} else {
 						$scrub_thread = escapeshellcmd($thread);
-						$command = "thread-archiver --silent --runonce --path=./ $scrub_thread";
+						$command = "thread-archiver --silent --runonce --delay=1.0 --nojs --path=./ $scrub_thread";
 						exec($command, $output, $result);
 						$output = printThatArray($output);
 						#passthru($command, $result);

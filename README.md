@@ -24,12 +24,13 @@ All POST and GET inputs are either validated or scrubbed.
 Install
 -------
 
-**Linux Only, though a properly built binary of the latest version of BASC Archiver and some slight modifications can make this work in Windows**
+Linux Only, though a properly built binary of the latest version of BASC Archiver and some slight modifications can make this work in Windows.
 
 Setup the base install of your favorite web server, PHP, and zip.
 
-Run the setup.py install script in the BASC-Archiver folder to get a working binary.
+Run the setup.py install script in the BASC-Archiver folder to get a working binary.  
+The version of BASC-Archiver packaged with this site has a minor modification inside it to ensure there are no issues when making web requests.
 
 Make sure the httpd user is able to manipulate the filesystem within the webapp directory.
 
-Note to people using any distro with SELinux; SELinux hates it when web servers make outbound queries. Proceed with caution. 
+Note to people using any distro with SELinux; SELinux hates it when web servers make outbound queries. Proceed with caution.

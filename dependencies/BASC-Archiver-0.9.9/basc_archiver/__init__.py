@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # BASC Imageboard Archiver
 from __future__ import absolute_import
@@ -7,7 +7,7 @@ import threading
 
 from .sites import default_archivers
 
-version = '0.9.3'
+version = '0.9.8'
 _default_base_dir = './archive'
 
 

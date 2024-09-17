@@ -1,7 +1,7 @@
 <?php
 function scandir2($n)
 {
-  return array_slice(scandir($n), 2);
+    return array_slice(scandir($n), 2);
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

@@ -10,22 +10,31 @@ function get_http_response_code($n)
 }
 function printThatArray($array)
 {
-  $temp = "";
-  foreach ($array as $line) {
-    $temp .= $line;
-    $temp .= "<br/>";
-  }
-  return $temp;
+    $temp = "";
+    foreach ($array as $line) {
+        $temp .= $line;
+        $temp .= "<br/>";
+    }
+    return $temp;
 }
 function scandir2($n)
 {
-  return array_slice(scandir($n), 2);
+    return array_slice(scandir($n), 2);
 }
 
 /* GET */
 $board = isset($_GET['board']) ? $_GET['board'] : '';
 $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
 $method = isset($_GET['method']) ? $_GET['method'] : '';
+
+$con = stream_context_create(
+    array(
+        'http' => array(
+            'method' => "GET",
+            'header' => "User-Agent: " . $_SERVER['HTTP_USER_AGENT'] . "\r\n"
+        )
+    )
+);
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -91,13 +100,13 @@ $method = isset($_GET['method']) ? $_GET['method'] : '';
                                             /* Check if 404'd */
                                             /* We do it this way now because 4chan's API fucked up response codes... */
                                             try {
-                                                $them_json = json_decode(file_get_contents("http://a.4cdn.org/$board/thread/$thread.json"), true);
+                                                $them_json = json_decode(file_get_contents("https://a.4cdn.org/$board/thread/$thread.json", false, $con), true);
                                             } catch (Exception $e) {
                                                 $them_json = '';
                                             }
                                             if ($them_json != '') {
                                                 /* Get their JSON */
-                                                $them_json = json_decode(file_get_contents("http://a.4cdn.org/$board/thread/$thread.json"), true);
+                                                $them_json = json_decode(file_get_contents("https://a.4cdn.org/$board/thread/$thread.json", false, $con), true);
                                                 /* If new replies exist according to their JSON OR they have a closed marker that we don't have, show Update button */
                                                 if (($json['posts'][0]['replies'] < $them_json['posts'][0]['replies']) || (!empty($them_json['posts'][0]['closed']))) {
                                                     $status = "<a href='update.php?board=$board&thread=$thread'>Update Availible</a>";

@@ -46,13 +46,13 @@ $thread = isset($_GET['thread']) ? $_GET['thread'] : '';
           $board = escapeshellcmd("$board");
           $thread = escapeshellcmd("$thread");
           if (!empty($board)) {
-            $files = scandir2($board);  
+            $files = scandir2($board);
             sort($files);
             echo "<h4><a href='board.php?board=$board'><--Back to /$board/---</a></h4>";
             if (!empty($thread)) {
               /* Validate thread based on if it exists in this dir */
               if (array_search($thread, $files) !== false) {
-                $command = "thread-archiver --silent --runonce --path=../ https://boards.4chan.org/$board/thread/$thread";
+                $command = "thread-archiver --silent --runonce --delay=1.0 --nojs --path=../ https://boards.4chan.org/$board/thread/$thread";
                 exec($command, $output, $result);
                 $output = printThatArray($output);
                 echo "<h5>Thread: $thread</h5>";

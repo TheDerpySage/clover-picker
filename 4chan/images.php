@@ -5,7 +5,7 @@ function iAmError($n)
 }
 function scandir2($n)
 {
-  return array_slice(scandir($n), 2);
+	return array_slice(scandir($n), 2);
 }
 
 /* GET */
