@@ -61,6 +61,7 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 										<thead>
 										<tr>
 										<th scope='col'>Title</th>
+										<th scope='col'>Date</th>
 										<th scope='col'>Thread #</th>
 										<th scope='col'>Images</th>
 										<th scope='col'>Status</th>
@@ -79,8 +80,10 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 										if ($json['posts'][0]['sub'] != '')
 											$title = $json['posts'][0]['sub'];
 										else $title = $json['posts'][0]['semantic_url'];
+										/* Form Date */
+										$date = date('Y/m/d',  $json['posts'][0]['time']);
 										/* Form the entry */
-										$temp .= "<td>$title</td><td><a href='$dir/$file/$file.html'>/$file/</a></td>";
+										$temp .= "<td>$title</td><td>$date</td><td><a href='$dir/$file/$file.html'>/$file/</a></td>";
 										$temp .= "<td><a href='images.php?method=all&board=$board&thread=$file'>Images</a></td>";
 										if (empty($json['posts'][0]['closed']))
 											$temp .= "<td>Open</td>";
@@ -110,7 +113,8 @@ $board = isset($_GET['board']) ? $_GET['board'] : '';
 				[10, 25, 50, 100, "All"]
 			],
 			"order": [
-				[1, "des"]
+				[1, "des"],
+				[2, "des"]
 			]
 		});
 	});
